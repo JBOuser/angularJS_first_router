@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoutingFunctionsService } from '../services/routing-functions/routing-functions.service';
 
 @Component({
   selector: 'app-about-us-component',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutUsComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private routingFunctions:RoutingFunctionsService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  home(){
+    this.routingFunctions.home();
+  }
 }

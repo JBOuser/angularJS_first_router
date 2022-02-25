@@ -21,6 +21,23 @@ export class EmployeesDataServiceService {
     return this.employees;
   }
 
+  getEmployeeById(id:string){
+    let employeeMatch=null;
+    this.employees.findIndex(employee => {
+      if(id === employee.getId()){
+        employeeMatch = employee;
+        return;
+      }
+    })
+    return employeeMatch;
+  }
+
+  updateEmployeeById(employeeObject:EmployeeClass){
+    let employeeMatch = this.getEmployeeById(employeeObject.getId());
+    let indexMatch = this.employees.indexOf(employeeMatch);
+    this.employees[indexMatch] = employeeObject;
+  }
+
   addNewEmployee(employeeObject:EmployeeClass){
     if(this.modalService.showConfirmation(
       `ADDITION ACTION`,

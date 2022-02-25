@@ -13,7 +13,6 @@ export class HomeComponentComponent implements OnInit {
   subTitleOne = 'Add an Employees';
   subTitleTwo = 'Employees List';
   
-  private availableUsers = ['admin'];
   public tmpId:string="";
   public tmpName:string="";
   public tmpSurname:string="";
@@ -26,7 +25,7 @@ export class HomeComponentComponent implements OnInit {
   
   //ModalServiceService is injected
   constructor(
-    private modalService:ModalServiceService,
+    //private modalService:ModalServiceService,
     private employeesDataService:EmployeesDataServiceService
   ){}
 
