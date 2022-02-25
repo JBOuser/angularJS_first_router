@@ -55,6 +55,10 @@ export class EmployeesDataServiceService {
     ) === true){
       var indexObject = this.employees.indexOf(employeeObject);
       var deletedEmployee = this.employees.splice(indexObject,1);    
+      return true;
+    }
+    else{
+      return false;
     }
   }
 }

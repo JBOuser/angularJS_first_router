@@ -21,6 +21,7 @@
       <div class="col mt-3" style="text-align: center;">
         <!-- <input class="btn btn-primary" type="submit" value="Submit" (click)="this.addEmployee()"> -->
           <input class="btn btn-primary" type="submit" value="Submit">
+          &nbsp;
           <input class="btn btn-warning" type="button" value="Clean" (click)="this.cleanAllInputs()">
       </div>
     </form>
@@ -36,7 +37,7 @@
         <span style="display: none;">{{i+1}}</span><br>
   
         <div class="form-group row">
-            <a [routerLink]="['/projects',employee.getId()]" style="text-decoration: none;"
+            <a [routerLink]="['/projects',employee.getId()]"  [queryParams]="{title:'Update Employee'}" style="text-decoration: none;"
                 title="Go to {{employee.getName()}}'s profile"
             >
                 <div class="form-group col-md-3">

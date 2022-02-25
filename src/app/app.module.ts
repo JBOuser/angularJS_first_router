@@ -11,6 +11,7 @@ import { ProjectsComponentComponent } from './projects-component/projects-compon
 import { AboutUsComponentComponent } from './about-us-component/about-us-component.component';
 import { ContactComponentComponent } from './contact-component/contact-component.component';
 import { RouterModule } from '@angular/router';
+import { ErrorComponentComponent } from './error-component/error-component.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
     HomeComponentComponent,
     ProjectsComponentComponent,
     AboutUsComponentComponent,
-    ContactComponentComponent
+    ContactComponentComponent,
+    ErrorComponentComponent
   ],
   imports: [
     BrowserModule,

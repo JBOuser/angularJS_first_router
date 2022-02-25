@@ -11,8 +11,8 @@ import { RoutingFunctionsService } from '../services/routing-functions/routing-f
 })
 export class ProjectsComponentComponent implements OnInit {
 
-  addTitleOne = 'Add a new Employee';
-  updateTitleOne = 'Update Employee data';
+  titleOne = 'Add a new Employee';
+  //updateTitleOne = 'Update Employee data';
 
   public tmpId:string="";
   public tmpName:string="";
@@ -37,7 +37,15 @@ export class ProjectsComponentComponent implements OnInit {
   ngOnInit(): void {
     if(this.activateRoute.snapshot.paramMap.get('id')!==null){
       this.isUpdate = true;
-      this.employeeParamId = this.activateRoute.snapshot.paramMap.get('id');
+
+      //get queryParam from URL (?Update%20Employee)
+      this.titleOne = this.activateRoute.snapshot.queryParams['title'];
+      
+      //#1.0 (project/:id)
+      //this.employeeParamId = this.activateRoute.snapshot.paramMap.get('id');
+      //#2.0 (project/:id)
+      this.employeeParamId = this.activateRoute.snapshot.params['id'];
+      
       this.employeeMatch = this.employeesDataService.getEmployeeById(this.employeeParamId);
       this.loadEmployeeData(this.employeeMatch);
     }    
@@ -72,7 +80,7 @@ export class ProjectsComponentComponent implements OnInit {
   
   //Clean inputs data
   cleanAllInputs(){    
-    this.tmpId="";
+    //this.tmpId="";
     this.tmpName="";
     this.tmpSurname="";
     this.tmpPosition="";
@@ -85,6 +93,14 @@ export class ProjectsComponentComponent implements OnInit {
     this.tmpSurname = employeeObject.getSurname();
     this.tmpPosition = employeeObject.getPosition();
     this.tmpSalary = employeeObject.getSalary();
+  }
+
+  deleteEmployee(){
+    let employeeToDelete = this.employeesDataService.getEmployeeById(this.tmpId);
+    if(this.employeesDataService.deleteAnEmployee(employeeToDelete)){
+      //redirect to '/home'
+      this.home()
+    }
   }
 
   home(){

@@ -1,9 +1,7 @@
 
 <div class="container" style="align-content: center;">
     <!-- <h1 style="text-align: center;">{{this.title}}</h1><br/> -->
-    <h3 style="text-align: center;">{{
-        !this.getIsUpdate() ? this.addTitleOne : this.updateTitleOne
-    }}</h3>
+    <h3 style="text-align: center;">{{this.titleOne}}</h3>
     <form #userRegistry="ngForm" class="form-group row" (ngSubmit)="this.onSubmit(userRegistry.value)" >
       <div class="form-group col-md-3 visually-hidden">
         <input type="text" class="form-control" name="id" [(ngModel)]="this.tmpId"/>
@@ -29,7 +27,13 @@
           <input class="btn btn-primary" type="submit" value="{{
             !this.getIsUpdate() ? 'Submit' : 'Update'
           }}">
-          <input class="btn btn-warning" type="button" value="Clean" (click)="this.cleanAllInputs()">
+          &nbsp;
+          <span *ngIf="this.getIsUpdate()">
+            <input class="btn btn-danger" type="button" value="Delete" (click)="this.deleteEmployee()">
+            &nbsp;
+          </span>
+
+        <input class="btn btn-warning" type="button" value="Clean" (click)="this.cleanAllInputs()">
       </div>
     </form>
   </div>
