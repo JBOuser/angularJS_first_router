@@ -17,7 +17,7 @@ export class HomeComponentComponent implements OnInit {
   public tmpName:string="";
   public tmpSurname:string="";
   public tmpPosition:string="";
-  public tmpSalary:number=0;
+  public tmpYear:number=0;
 
   //update employees list
   @Input() employees:EmployeeClass[]=[];
@@ -31,7 +31,7 @@ export class HomeComponentComponent implements OnInit {
 
   ngOnInit(): void {
     //get all employees from service
-    this.employees = this.employeesDataService.getAllEmployess();
+    this.employees = this.employeesDataService.getAllEmployees();
   }
 
   //Add an Employee
@@ -42,7 +42,7 @@ export class HomeComponentComponent implements OnInit {
       data.name,
       data.surname,
       data.position,
-      data.salary
+      data.year
     )
 
     //#2.0
@@ -56,7 +56,7 @@ export class HomeComponentComponent implements OnInit {
     this.tmpName="";
     this.tmpSurname="";
     this.tmpPosition="";
-    this.tmpSalary=0;
+    this.tmpYear=0;
   }
 
   //Delete an Employee

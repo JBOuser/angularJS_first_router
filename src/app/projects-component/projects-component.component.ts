@@ -18,7 +18,8 @@ export class ProjectsComponentComponent implements OnInit {
   public tmpName:string="";
   public tmpSurname:string="";
   public tmpPosition:string="";
-  public tmpSalary:number=0;
+  public tmpYear:number=0;
+  public tmpImg:string="";
 
   public employeeParamId:string="";
   private employeeMatch:EmployeeClass;
@@ -35,7 +36,9 @@ export class ProjectsComponentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.activateRoute.snapshot.paramMap.get('id')!==null){
+    if( this.activateRoute.snapshot.paramMap.get('id')!==null &&
+        this.activateRoute.snapshot.paramMap.get('id')!==undefined
+      ){
       this.isUpdate = true;
 
       //get queryParam from URL (?Update%20Employee)
@@ -61,7 +64,7 @@ export class ProjectsComponentComponent implements OnInit {
       data.name,
       data.surname,
       data.position,
-      data.salary
+      data.year
     )
 
     if(!this.isUpdate){      
@@ -84,15 +87,17 @@ export class ProjectsComponentComponent implements OnInit {
     this.tmpName="";
     this.tmpSurname="";
     this.tmpPosition="";
-    this.tmpSalary=0;
+    this.tmpYear=0;
   }
 
   loadEmployeeData(employeeObject:EmployeeClass){
+    //console.log(employeeObject);
     this.tmpId = employeeObject.getId();
     this.tmpName = employeeObject.getName();
     this.tmpSurname = employeeObject.getSurname();
     this.tmpPosition = employeeObject.getPosition();
-    this.tmpSalary = employeeObject.getSalary();
+    this.tmpYear = employeeObject.getYear();
+    this.tmpImg = employeeObject.getImg();
   }
 
   deleteEmployee(){

@@ -1,7 +1,9 @@
-
-<div class="container" style="align-content: center;">
+<div class="container mb-3" [ngStyle]="{
+  'align-content': 'center'
+}">
     <!-- <h1 style="text-align: center;">{{this.title}}</h1><br/> -->
     <h3 style="text-align: center;">{{this.titleOne}}</h3>
+
     <form #userRegistry="ngForm" class="form-group row" (ngSubmit)="this.onSubmit(userRegistry.value)" >
       <div class="form-group col-md-3 visually-hidden">
         <input type="text" class="form-control" name="id" [(ngModel)]="this.tmpId"/>
@@ -18,10 +20,18 @@
         <label for="position">Position</label>
         <input type="text" class="form-control" name="position" placeholder="position" [(ngModel)]="this.tmpPosition"/>
       </div>
-      <div class="form-group col-md-3">
-        <label for="salary">Salary</label>
-        <input type="text" class="form-control" name="salary" placeholder="salary" [(ngModel)]="this.tmpSalary"/>
+      <div class="form-group col-md-3 mb-3">
+        <label for="year">Year</label>
+        <input type="text" class="form-control" name="year" placeholder="year" [(ngModel)]="this.tmpYear"/>
       </div>
+
+      <div class="row mb-3" *ngIf="this.getIsUpdate()" 
+        [ngStyle]="{'text-align':'center'}">
+        <div class="col">
+          <img src="{{this.tmpImg}}" alt="image">  
+        </div>
+      </div>
+
       <div class="col mt-3" style="text-align: center;">
         <!-- <input class="btn btn-primary" type="submit" value="Submit" (click)="this.addEmployee()"> -->
           <input class="btn btn-primary" type="submit" value="{{
@@ -37,8 +47,7 @@
       </div>
     </form>
   </div>
-  <br/><br/>
 
-<div style="text-align: center;">
+<div class="mb-3" style="text-align: center;">
     <input type="button" class="btn btn-outline-dark" value="Home" (click)="home()">
 </div>

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EmployeeClass } from 'src/app/models/employee-class';
 import { ModalServiceService } from '../modal/modal-service.service';
@@ -7,18 +8,50 @@ import { ModalServiceService } from '../modal/modal-service.service';
 })
 export class EmployeesDataServiceService {
 
+  private dataUrl = "https://run.mocky.io/v3/08203eb9-482a-4304-a16b-c4ac4cd8f550";
   private employees:EmployeeClass[]=[];
-  constructor(private modalService:ModalServiceService) {
+
+  constructor(
+    private modalService:ModalServiceService,
+    private http:HttpClient //run fetch data
+  ) {
+    //#1.0 Local
+    /*
     this.employees = [
       new EmployeeClass("1","Kasumi","","Warrior",2700.0),
       new EmployeeClass("2","Ryu","Hayabusa","Leader",3000.0),
       new EmployeeClass("3","Hayate","","Leader",2700.0),
       new EmployeeClass("4","Ayane","","Warrior",2400.0)
     ]
+    */
+
+    //#2.0
+    this.getAllEmployeesFromURL();
   }
 
-  getAllEmployess(){
+  getAllEmployees(){
     return this.employees;
+  }
+
+  getAllEmployeesFromURL(){
+    this.employees=[];
+    this.http.get(this.dataUrl)
+    .subscribe(res => {
+        Object.values(res).forEach(obj => {
+          var newEmployee = new EmployeeClass(
+            obj.id,
+            obj.name !== 'undefined' ? obj.name : "Name",
+            obj.surname !== 'undefined' ? obj.surname : "Alias",
+            obj.occupation !== 'undefined' ? obj.occupation[0] : "Occupation",
+            obj.yearFirstAppearance !== 'undefined' ? obj.yearFirstAppearance : 1986
+          )
+          newEmployee.setIcon(obj.iconURL !== 'undefined' ? obj.iconURL : "");
+          newEmployee.setImg(obj.imgURL !== 'undefined' ? obj.imgURL : "");
+          newEmployee.setData(obj.dataURL !== 'undefined' ? obj.dataURL : "");
+
+          this.employees.push(newEmployee);
+        })
+    })
   }
 
   getEmployeeById(id:string){

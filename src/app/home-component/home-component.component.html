@@ -16,7 +16,7 @@
       </div>
       <div class="form-group col-md-3">
         <label for="salary">Salary</label>
-        <input type="text" class="form-control" name="salary" placeholder="salary" [(ngModel)]="this.tmpSalary"/>
+        <input type="text" class="form-control" name="year" placeholder="year" [(ngModel)]="this.tmpYear"/>
       </div>
       <div class="col mt-3" style="text-align: center;">
         <!-- <input class="btn btn-primary" type="submit" value="Submit" (click)="this.addEmployee()"> -->
@@ -36,14 +36,23 @@
       <div *ngFor="let employee of employees; let i = index;">
         <span style="display: none;">{{i+1}}</span><br>
   
+        <div class="form-group row mb-3">
+          <div class="form-group col-md-3">
+              <a href='{{employee.getData() !== "" ? employee.getData() : "#"}}' target="_blank">
+                <img src="{{employee.getIcon()}}" alt="'{{employee.getName}}' image" style="width: 75px; height: 75px;">
+              </a>
+          </div>
+        </div>
+
         <div class="form-group row">
+
+          <div class="form-group col-md-3">
             <a [routerLink]="['/projects',employee.getId()]"  [queryParams]="{title:'Update Employee'}" style="text-decoration: none;"
-                title="Go to {{employee.getName()}}'s profile"
-            >
-                <div class="form-group col-md-3">
-                    <span>{{employee.getName()}}</span>
-                </div>
-            </a>
+                  title="Go to {{employee.getName()}}'s profile"
+              >
+                      <span>{{employee.getName()}}</span>
+              </a>
+          </div>
     
             <div class="form-group col-md-3">
                 <div *ngIf='employee.getSurname()!==""; else noSurname; '>
@@ -62,8 +71,8 @@
 
             <div class="form-group col-md-3">
                 <span [ngClass]="{
-                lowSalary: employee.getSalary() < 2700 
-                }">{{employee.getSalary()}}</span><br>
+                lowSalary: employee.getYear() < 2000 
+                }">{{employee.getYear()}}</span><br>
             </div>
         </div>
           

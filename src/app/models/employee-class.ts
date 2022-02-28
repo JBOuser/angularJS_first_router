@@ -3,7 +3,10 @@ export class EmployeeClass {
     private name:string="";
     private surname:string="";
     private position:string="";
-    private salary:number=0.0;
+    private year:number=0.0;
+    private icon:string="";
+    private img:string="";
+    private data:string="";
 
     //#1.0
     public constructor(
@@ -11,13 +14,13 @@ export class EmployeeClass {
         name:string,
         surname:string,
         position:string,
-        salary:number,
+        year:number,
     ){
         this.id = id,
         this.name = name,
         this.surname = surname,
         this.position = position,
-        this.salary = salary
+        this.year = year
     };
 
 
@@ -33,7 +36,29 @@ export class EmployeeClass {
     public getPosition() : string {
         return this.position;
     }
-    public getSalary() : number {
-        return this.salary;
+    public getYear() : number {
+        return this.year;
+    }
+
+
+    public getIcon(){
+        return this.icon;
+    }
+    public setIcon(icon:string){
+        this.icon = icon;
+    }
+
+    public getImg(){
+        return this.img;
+    }
+    public setImg(img:string){
+        this.img = img;
+    }
+
+    public getData(){
+        return this.data;
+    }
+    public setData(data:string){
+        this.data = data;
     }
 }

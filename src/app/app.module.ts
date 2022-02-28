@@ -12,6 +12,7 @@ import { AboutUsComponentComponent } from './about-us-component/about-us-compone
 import { ContactComponentComponent } from './contact-component/contact-component.component';
 import { RouterModule } from '@angular/router';
 import { ErrorComponentComponent } from './error-component/error-component.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ErrorComponentComponent } from './error-component/error-component.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     ModalServiceService,
